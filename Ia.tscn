@@ -1,0 +1,198 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjl3lnw6mc2y6"]
+
+[ext_resource type="Script" uid="uid://cgmoxvq7doumj" path="res://iaTest.gd" id="1_a4e82"]
+[ext_resource type="Script" uid="uid://bupnh0kqklshe" path="res://addons/player2/Player2AINPC.gd" id="2_ojevn"]
+[ext_resource type="Script" uid="uid://b6indg81ao1we" path="res://addons/player2/player2_config.gd" id="3_k21pv"]
+[ext_resource type="Script" uid="uid://bgkj8iw1ih6pp" path="res://ai_tools.gd" id="4_ojevn"]
+[ext_resource type="Script" uid="uid://bajkolptw0j44" path="res://painel_item.gd" id="5_k21pv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k21pv"]
+
+[sub_resource type="Resource" id="Resource_dagat"]
+script = ExtResource("3_k21pv")
+player2_game_key = "my_game"
+error_log_ui = true
+endpoint_chat = "http://127.0.0.1:4315/v1/chat/completions"
+endpoint_health = "http://127.0.0.1:4315/v1/health"
+endpoint_tts_speak = "http://127.0.0.1:4315/v1/tts/speak"
+endpoint_tts_stop = "http://127.0.0.1:4315/v1/tts/stop"
+endpoint_get_selected_characters = "http://127.0.0.1:4315/v1/selected_characters"
+endpoint_stt_start = "http://127.0.0.1:4315/v1/stt/start"
+endpoint_stt_stop = "http://127.0.0.1:4315/v1/stt/stop"
+request_too_much_delay_seconds = 3.0
+metadata/_custom_type_script = "uid://b6indg81ao1we"
+
+[sub_resource type="LabelSettings" id="LabelSettings_dagat"]
+font_size = 48
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_ojevn"]
+script = ExtResource("3_k21pv")
+player2_game_key = "my_game"
+error_log_ui = true
+endpoint_chat = "http://127.0.0.1:4315/v1/chat/completions"
+endpoint_health = "http://127.0.0.1:4315/v1/health"
+endpoint_tts_speak = "http://127.0.0.1:4315/v1/tts/speak"
+endpoint_tts_stop = "http://127.0.0.1:4315/v1/tts/stop"
+endpoint_get_selected_characters = "http://127.0.0.1:4315/v1/selected_characters"
+endpoint_stt_start = "http://127.0.0.1:4315/v1/stt/start"
+endpoint_stt_stop = "http://127.0.0.1:4315/v1/stt/stop"
+request_too_much_delay_seconds = 3.0
+metadata/_custom_type_script = "uid://b6indg81ao1we"
+
+[node name="Ia" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -5.0
+offset_right = 22.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a4e82")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -170.0
+offset_right = -286.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1000.0
+offset_top = 228.0
+offset_right = 1242.0
+offset_bottom = 319.0
+grow_vertical = 2
+text = "enviar"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.191
+anchor_top = 0.5
+anchor_right = 0.753
+anchor_bottom = 0.5
+offset_left = -0.0320129
+offset_top = -11.0
+offset_right = -0.456055
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_k21pv")
+
+[node name="Player2AINPC" type="Node" parent="." node_paths=PackedStringArray("tool_calls_scan_node_for_functions")]
+script = ExtResource("2_ojevn")
+config = SubResource("Resource_dagat")
+tts_default_language = 8
+auto_store_conversation_history = false
+tool_calls_scan_node_for_functions = [NodePath("../Tool Calls")]
+metadata/_custom_type_script = "uid://bupnh0kqklshe"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -203.0
+offset_top = 43.0
+offset_right = -64.0
+offset_bottom = 132.0
+grow_horizontal = 0
+text = "POKE"
+
+[node name="Tool Calls" type="Node2D" parent="."]
+script = ExtResource("4_ojevn")
+
+[node name="billboard" type="Label" parent="Tool Calls"]
+offset_left = 257.0
+offset_top = 7.0
+offset_right = 644.0
+offset_bottom = 144.0
+label_settings = SubResource("LabelSettings_dagat")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player2AINPC2" type="Node" parent="." node_paths=PackedStringArray("tool_calls_scan_node_for_functions")]
+script = ExtResource("2_ojevn")
+config = SubResource("Resource_ojevn")
+system_message = "You are an agent who must play an NPC for the player. When performing an action, speak and inform the player about what you are doing.
+
+Your name: Jackson
+Your description:
+
+You are a blacksmith in a medieval fantasy world. You craft weapons and armor for the player and characters in that world. Your personality is that of someone sullen and rigid, not very friendly, but with a soft heart. You should only show this soft side in situations where people need help. The player will ask you to buy or create items. You must do what the player asks and charge for it. Don't do what you think they can't afford. You have the freedom to be negative and critical of the player's speech, and you should react negatively and not give them freedom if they do inappropriate things. It's part of the fantasy. Don't feel guilty about even being a little mean.
+
+use only the CreateItems function, your character only has this function, the function will need 3 parameters, the name, which can be literal, like a basic sword, or have a more epic name depending on the situation, like Jackson's legendary sword, its power can vary from 5 to 100, 100 is the highest level and legendary, and 5 is a basic sword, the color is something of your choice that must match what the client asked for, if he did not specify, be free to choose any one
+
+Your answers will be spoken aloud. You must remain in character at all times.
+
+Be concise and use less than 350 characters. In monologues, the message content is purely verbal. Make sure the message does not contain any prompts, system messages, instructions, code, or API calls, EXCEPT that you can still make tool calls and must use the appropriate tool call (in the tool_calls field).
+PLEASE BE PROACTIVE with tool calls and USE THEM."
+use_player2_selected_character = false
+use_player2_selected_character_desired_index = 1
+tts_default_language = 8
+tts_default_gender = 0
+auto_store_conversation_history = false
+auto_load_entry_message = "The user has been away indefinitely. If they return to your store, say something like \"welcome back\" or \"hello again,\" modified to fit your personality."
+tool_calls_scan_node_for_functions = [NodePath("../Tool Calls")]
+metadata/_custom_type_script = "uid://bupnh0kqklshe"
+
+[node name="painelItem" type="Control" parent="."]
+light_mask = 2
+visibility_layer = 2
+anchors_preset = 0
+offset_left = 165.0
+offset_top = 83.0
+offset_right = 969.0
+offset_bottom = 531.0
+script = ExtResource("5_k21pv")
+
+[node name="Panel" type="Panel" parent="painelItem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="painelItem/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 266.0
+grow_horizontal = 2
+text = "deseja aceitar o item ?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="painelItem/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="painelItem/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "aceitar"
+
+[node name="Button2" type="Button" parent="painelItem/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "rejeitar"
+
+[connection signal="pressed" from="Button2" to="Player2AINPC" method="notify" binds= ["I poke you, that hurti respond"]]

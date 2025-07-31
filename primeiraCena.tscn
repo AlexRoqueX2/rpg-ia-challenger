@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdrcjesuv6bkk"]
+
+[ext_resource type="PackedScene" uid="uid://uny53r0dt7e2" path="res://gameObjects/Jogador.tscn" id="3_7o7q5"]
+[ext_resource type="PackedScene" uid="uid://b2n8yrwdy5qi7" path="res://gameObjects/bloco.tscn" id="3_24x84"]
+[ext_resource type="PackedScene" uid="uid://b6hk7242s0f3j" path="res://gameObjects/bau.tscn" id="3_vhs5p"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Jogador" parent="." instance=ExtResource("3_7o7q5")]
+z_index = 1
+
+[node name="bloco" parent="." instance=ExtResource("3_24x84")]
+position = Vector2(783, 218)
+scale = Vector2(4, 0.5)
+
+[node name="bloco2" parent="." instance=ExtResource("3_24x84")]
+position = Vector2(720, 599)
+
+[node name="bloco3" parent="." instance=ExtResource("3_24x84")]
+position = Vector2(315, 484)
+scale = Vector2(5, 0.5)
+
+[node name="Bau" parent="." instance=ExtResource("3_vhs5p")]
+position = Vector2(319, 409)
+scale = Vector2(1, 0.5)

@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkkhyfe7hlab5"]
+
+[ext_resource type="Script" uid="uid://opr6ul4svm7b" path="res://gameObjects/menu_combate.gd" id="1_10jgy"]
+
+[sub_resource type="Gradient" id="Gradient_10jgy"]
+offsets = PackedFloat32Array(0.985611, 1)
+colors = PackedColorArray(0.277528, 0.277528, 0.277528, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m3j51"]
+gradient = SubResource("Gradient_10jgy")
+width = 128
+height = 23
+fill_from = Vector2(0.403941, 0.0274149)
+fill_to = Vector2(0.389163, 1)
+
+[sub_resource type="Gradient" id="Gradient_aupxj"]
+offsets = PackedFloat32Array(0.52518, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.877346, 3.87453e-06, 1.2514e-06, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_11hgd"]
+gradient = SubResource("Gradient_aupxj")
+width = 128
+height = 23
+fill_from = Vector2(0.369458, 0)
+fill_to = Vector2(0.576355, 0.548297)
+
+[node name="MenuCombate" type="Control"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_10jgy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_top = 526.0
+offset_right = 1280.0
+offset_bottom = 716.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.589096, 0.589096, 0.589096, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -194.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "caravel o indomavel"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+value = 80.0
+texture_under = SubResource("GradientTexture2D_m3j51")
+texture_progress = SubResource("GradientTexture2D_11hgd")
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer/TextureProgressBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "hp: 80/100"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="atk" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ATK"
+
+[node name="atc" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ATC"
+
+[node name="iten" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ITEN"
+
+[node name="run" type="Button" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RUN"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_vertical = 3
+text = "por favor pare de faazer isso , somos uma familia indefesa "
+fit_content = true

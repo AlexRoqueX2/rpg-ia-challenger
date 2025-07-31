@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6hk7242s0f3j"]
+
+[ext_resource type="Script" uid="uid://cw4m8dqfcpuv5" path="res://bau.gd" id="1_smiex"]
+[ext_resource type="Texture2D" uid="uid://1ijmxgwhxwe4" path="res://icon.svg" id="2_ylc5n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smiex"]
+
+[node name="Bau" type="Node2D"]
+script = ExtResource("1_smiex")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ylc5n")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_smiex")
