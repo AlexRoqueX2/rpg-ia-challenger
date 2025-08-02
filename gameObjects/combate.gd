@@ -1,20 +1,15 @@
 extends Node2D
 
-@onready var turn_manager = $GerenciadorCombate
-@onready var caixa_de_texto = $UICombate/CaixaDeTexto
-@onready var botoes_acoes = $UICombate/BotoesAcoes
-@onready var ui = $MenuCombate
+var GameCharacter = preload("res://gameObjects/combate/GameCharacter.gd")
+var PlayerAction = preload("res://gameObjects/combate/PlayerAction.gd")
+var MatchManager = preload("res://gameObjects/combate/MatchManager.gd")
 
-var Personagem = preload("res://gameObjects/combate/Personagem.gd")
+@onready var combat_menu: CombatMenu = $CombatMenu
 
 func _ready():
+	print("=====")
+	var action = PlayerAction.new("Dano", 10, "dano", 50, 1)
+	var	character = GameCharacter.new("Allan Roque", 50, 50, [action, action, action])
 	
-	# Cria heróis e inimigos
-	var heroi1 = Personagem.new("Guerreiro", 100, 20)
-	ui.atualizarHp(heroi1.max_hp)
-	var heroi2 = Personagem.new("Mago", 70, 25)
-	var inimigo1 = Personagem.new("Goblin", 50, 15)
-	var inimigo2 = Personagem.new("Orc", 80, 10)
-
-	turn_manager.personagens = [heroi1, heroi2, inimigo1, inimigo2]
-	turn_manager.iniciar_turno()
+	var match = MatchManager.new(character, [character], [character], combat_menu)
+	add_child(match)

@@ -1,55 +1,49 @@
-# Arquivo: MatchManager.gd
 extends Node
 
-var Personagem = preload("res://gameObjects/combate/Personagem.gd")
+class_name MatchManager
 
-var player: Personagem
-var allies: Array[Personagem] = []
-var enemies: Array[Personagem] = []
+var player: GameCharacter
+var allies: Array[GameCharacter] = []
+var enemies: Array[GameCharacter] = []
 
+var combat_menu: CombatMenu
 var ordem_do_turno: Array = []
 var round: int = 0
 
-func _init(player: Personagem, allies: Array[Personagem], enemies: Array[Personagem]):
-#	instanciar tela de acao do jogador
+func _init(player: GameCharacter, allies: Array[GameCharacter], enemies: Array[GameCharacter], combat_menu: CombatMenu):
 	self.player = player
 	self.allies = allies
 	self.allies.append(player)
 	self.enemies = enemies
+	self.combat_menu = combat_menu
 
 func _ready():
 	print("== Start Game ==")
+	
+	combat_menu.action_selected.connect(_on_action_selected)
 	
 	new_round();
 
 func new_round():
 	round += 1
 	
-	var turns = allies + enemies
-	turns.sort_custom(func(a, b): return a.velocity > b.velocity)
+	var players = allies + enemies
+	players.sort_custom(func(a, b): return a.velocity > b.velocity)
 	
-	for turn in turns:
-		print("== Person ==")
-		print(turn.full_name)
-		
-		if turn == player:
+	for player in players:
+		if player == player:
 			print("receba a acao")
 			
-			var players = turns
 #			Filtrar para remover o jogador atual
-			players.filter(func(a): return a != turn)
-#			set: players
-#			set: actions na tela
-#			Exibir tela
+			players.filter(func(a): return a != player)
+			combat_menu.setup(player)
 			return
 		
 #		pergunta ao chat a acao
 
-# onbtnpress
-# executar a acao
-# if end game?
-# show end game
-# else new round
+func _on_action_selected(action: PlayerAction):
+	print(action.actionName)
+	print(action.damage)
 
 func is_end_game() -> bool:
 	return !allies.is_empty() || !enemies.is_empty()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://djiroieu72kq4"]
+[gd_scene load_steps=6 format=3 uid="uid://djiroieu72kq4"]
 
 [ext_resource type="Script" uid="uid://b7rtwjouccxsv" path="res://gameObjects/combate.gd" id="1_252j3"]
 [ext_resource type="PackedScene" uid="uid://bkkhyfe7hlab5" path="res://gameObjects/menu_combate.tscn" id="1_dr2eb"]
 [ext_resource type="Script" uid="uid://bgfwhv713kadj" path="res://gameObjects/gerenciador_combate.gd" id="2_6g2ps"]
 [ext_resource type="Texture2D" uid="uid://1ijmxgwhxwe4" path="res://icon.svg" id="3_n1ie0"]
+[ext_resource type="PackedScene" uid="uid://bikfxard5trwa" path="res://gameObjects/combate/combat_menu.tscn" id="4_n1ie0"]
 
 [node name="Combate" type="Node2D"]
 script = ExtResource("1_252j3")
@@ -15,5 +16,11 @@ script = ExtResource("2_6g2ps")
 position = Vector2(640.5, 360.5)
 scale = Vector2(9.99219, 5.61719)
 texture = ExtResource("3_n1ie0")
+
+[node name="CombatMenu" parent="." instance=ExtResource("4_n1ie0")]
+offset_left = 0.0
+offset_top = 559.0
+offset_right = 1281.0
+offset_bottom = 720.0
 
 [node name="MenuCombate" parent="." instance=ExtResource("1_dr2eb")]

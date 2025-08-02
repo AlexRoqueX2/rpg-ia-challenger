@@ -36,6 +36,7 @@ grow_vertical = 0
 script = ExtResource("1_10jgy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_top = 526.0

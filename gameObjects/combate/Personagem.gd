@@ -1,6 +1,6 @@
 extends Node
 
-class_name Personagem
+class_name Character
 
 var full_name: String
 
