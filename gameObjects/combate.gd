@@ -10,11 +10,11 @@ var Personagem = preload("res://gameObjects/combate/Personagem.gd")
 func _ready():
 	
 	# Cria heróis e inimigos
-	var heroi1 = Personagem.new("Guerreiro", 100, 20, true)
+	var heroi1 = Personagem.new("Guerreiro", 100, 20)
 	ui.atualizarHp(heroi1.max_hp)
-	var heroi2 = Personagem.new("Mago", 70, 25, true)
-	var inimigo1 = Personagem.new("Goblin", 50, 15, false)
-	var inimigo2 = Personagem.new("Orc", 80, 10, false)
+	var heroi2 = Personagem.new("Mago", 70, 25)
+	var inimigo1 = Personagem.new("Goblin", 50, 15)
+	var inimigo2 = Personagem.new("Orc", 80, 10)
 
 	turn_manager.personagens = [heroi1, heroi2, inimigo1, inimigo2]
 	turn_manager.iniciar_turno()

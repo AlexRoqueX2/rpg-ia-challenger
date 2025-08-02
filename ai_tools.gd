@@ -9,8 +9,8 @@ func get_time() -> String:
 func announceTime() -> void:
 	$billboard.text = get_time()
 
-
 func createIten(name: String, power: int, color: String) -> void:
-	print("voce pegou uma" + name + "ela tem ")
+	print("voce pegou uma " + name + " ela tem ")
 	print(power)
 	print("de poder , e possui uma cor :" + color)
+ 

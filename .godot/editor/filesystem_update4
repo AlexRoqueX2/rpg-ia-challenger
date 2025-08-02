@@ -1,6 +1,10 @@
-res://gameObjects/Combate.tscn
-res://gameObjects/combate.gd
-res://gameObjects/menu_combate.gd
+res://gameObjects/combate/MatchManager.gd
 res://primeiraCena.tscn
 res://Ia.tscn
 res://gameObjects/menu_combate.tscn
+res://gameObjects/Combate.tscn
+res://teste.tscn
+res://gameObjects/combate/Personagem.gd
+res://teste.gd
+res://iaTest.gd
+res://ai_tools.gd
