@@ -6,19 +6,23 @@ var player: GameCharacter
 var allies: Array[GameCharacter] = []
 var enemies: Array[GameCharacter] = []
 
+var battlefield: Battlefield
 var combat_menu: CombatMenu
 var ordem_do_turno: Array = []
 var round: int = 0
 
-func _init(player: GameCharacter, allies: Array[GameCharacter], enemies: Array[GameCharacter], combat_menu: CombatMenu):
+func _init(player: GameCharacter, allies: Array[GameCharacter], enemies: Array[GameCharacter], battlefield, combat_menu: CombatMenu):
 	self.player = player
 	self.allies = allies
 	self.allies.append(player)
 	self.enemies = enemies
 	self.combat_menu = combat_menu
+	self.battlefield = battlefield
 
 func _ready():
 	print("== Start Game ==")
+	
+	battlefield.setPlayers(allies, enemies)
 	
 	combat_menu.action_selected.connect(_on_action_selected)
 	
@@ -31,9 +35,7 @@ func new_round():
 	players.sort_custom(func(a, b): return a.velocity > b.velocity)
 	
 	for player in players:
-		if player == player:
-			print("receba a acao")
-			
+		if self.player == player:
 #			Filtrar para remover o jogador atual
 			players.filter(func(a): return a != player)
 			combat_menu.setup(player)

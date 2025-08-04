@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bikfxard5trwa"]
+[gd_scene load_steps=8 format=3 uid="uid://bikfxard5trwa"]
 
 [ext_resource type="Script" uid="uid://b608iopled6q7" path="res://combat_menu.gd" id="1_w5dl1"]
 
@@ -6,12 +6,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5dl1"]
 bg_color = Color(1, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4evm"]
-bg_color = Color(0, 0.462745, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcwt5"]
-bg_color = Color(0.66889, 0.0704318, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_th1ls"]
 bg_color = Color(4.86121e-06, 0.710553, 0.472364, 1)
@@ -107,20 +101,6 @@ size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_w5dl1")
 text = "FIGHT"
 
-[node name="ActionButton" type="Button" parent="MenuGrid"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_u4evm")
-text = "ACTION"
-
-[node name="ItemButton" type="Button" parent="MenuGrid"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_wcwt5")
-text = "ITEM"
-
 [node name="RunButton" type="Button" parent="MenuGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -142,8 +122,16 @@ size_flags_vertical = 3
 [node name="CharacterGrid" type="GridContainer" parent="PanelContainer"]
 layout_mode = 2
 
+[node name="RoundLabel" type="Label" parent="PanelContainer/CharacterGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "RoundLabel"
+label_settings = SubResource("LabelSettings_u4evm")
+
 [node name="CharacterName" type="Label" parent="PanelContainer/CharacterGrid"]
 layout_mode = 2
+text = "CharacterName"
 label_settings = SubResource("LabelSettings_u4evm")
 
 [node name="HpBar" type="ProgressBar" parent="PanelContainer/CharacterGrid"]

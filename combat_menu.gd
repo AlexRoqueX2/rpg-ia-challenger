@@ -10,8 +10,6 @@ signal action_selected(action: PlayerAction)
 
 @onready var menu_grid = $MenuGrid
 @onready var fight_button = $MenuGrid/FightButton
-@onready var action_button = $MenuGrid/ActionButton
-@onready var item_button = $MenuGrid/ItemButton
 @onready var run_button = $MenuGrid/RunButton
 
 @onready var fight_grid = $FightGrid

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://djiroieu72kq4"]
+[gd_scene load_steps=7 format=3 uid="uid://djiroieu72kq4"]
 
 [ext_resource type="Script" uid="uid://b7rtwjouccxsv" path="res://gameObjects/combate.gd" id="1_252j3"]
-[ext_resource type="PackedScene" uid="uid://bkkhyfe7hlab5" path="res://gameObjects/menu_combate.tscn" id="1_dr2eb"]
 [ext_resource type="Script" uid="uid://bgfwhv713kadj" path="res://gameObjects/gerenciador_combate.gd" id="2_6g2ps"]
-[ext_resource type="Texture2D" uid="uid://1ijmxgwhxwe4" path="res://icon.svg" id="3_n1ie0"]
+[ext_resource type="Script" uid="uid://de2pecmvafgi1" path="res://gameObjects/battlefield.gd" id="3_n1ie0"]
 [ext_resource type="PackedScene" uid="uid://bikfxard5trwa" path="res://gameObjects/combate/combat_menu.tscn" id="4_n1ie0"]
+[ext_resource type="Texture2D" uid="uid://cylge5ge4ye78" path="res://character.png" id="4_xn63m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5b00"]
 
 [node name="Combate" type="Node2D"]
 script = ExtResource("1_252j3")
@@ -12,15 +14,70 @@ script = ExtResource("1_252j3")
 [node name="GerenciadorCombate" type="Node" parent="."]
 script = ExtResource("2_6g2ps")
 
-[node name="fundo" type="Sprite2D" parent="."]
-position = Vector2(640.5, 360.5)
-scale = Vector2(9.99219, 5.61719)
-texture = ExtResource("3_n1ie0")
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="Battlefield" type="PanelContainer" parent="Background"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.776
+offset_bottom = 0.279968
+theme_override_styles/panel = SubResource("StyleBoxFlat_a5b00")
+script = ExtResource("3_n1ie0")
+
+[node name="Ally1" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(341, 158)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
+flip_h = true
+
+[node name="Ally2" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(284, 349)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
+flip_h = true
+
+[node name="Ally3" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(154, 158)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
+flip_h = true
+
+[node name="Ally4" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(113, 355)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
+flip_h = true
+
+[node name="Enemy1" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(801, 172)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
+
+[node name="Enemy2" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(876, 356)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
+
+[node name="Enemy3" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(986.411, 171.25)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
+
+[node name="Enemy4" type="Sprite2D" parent="Background/Battlefield"]
+visible = false
+position = Vector2(1061.41, 355.25)
+scale = Vector2(0.365435, 0.365435)
+texture = ExtResource("4_xn63m")
 
 [node name="CombatMenu" parent="." instance=ExtResource("4_n1ie0")]
 offset_left = 0.0
 offset_top = 559.0
 offset_right = 1281.0
 offset_bottom = 720.0
-
-[node name="MenuCombate" parent="." instance=ExtResource("1_dr2eb")]
