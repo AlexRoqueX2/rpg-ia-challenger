@@ -26,6 +26,9 @@ func setup(character: GameCharacter):
 	setCharacterName()
 	setFightActions()
 	refresh_hp()
+	
+	if !character.is_alive():
+		fight_button.disabled = true
 
 func setCharacterName():
 	character_name.text = character.full_name
@@ -35,16 +38,25 @@ func setFightActions():
 	button2.text = character.actions[1].actionName
 	button3.text = character.actions[2].actionName
 	
-	button1.pressed.connect(func(): emit_signal("action_selected", character.actions[0]))
-	button2.pressed.connect(func(): emit_signal("action_selected", character.actions[1]))
-	button3.pressed.connect(func(): emit_signal("action_selected", character.actions[2]))
+	button1.pressed.connect(func(): 
+		emit_signal("action_selected", character.actions[0])
+		_on_fight_back_button_pressed()
+	)
+	button2.pressed.connect(func(): 
+		emit_signal("action_selected", character.actions[1])
+		_on_fight_back_button_pressed()
+	)
+	button3.pressed.connect(func(): 
+		emit_signal("action_selected", character.actions[2])
+		_on_fight_back_button_pressed()
+	)
 
 	button4.pressed.connect(_on_fight_back_button_pressed)
 
 func refresh_hp():
 	hp_bar.max_value = character.max_hp
-	hp_bar.value = character.hp - 10
-	hp_bar_label.text = "%d / %d" % [character.hp - 10, character.max_hp]
+	hp_bar.value = character.hp
+	hp_bar_label.text = "%d / %d" % [character.hp, character.max_hp]
 	
 func _on_fight_button_pressed():
 	menu_grid.visible = false

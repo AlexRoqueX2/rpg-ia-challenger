@@ -44,7 +44,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="FightGrid" type="GridContainer" parent="."]
-visible = false
 layout_mode = 2
 anchor_left = 0.374
 anchor_right = 1.0
@@ -121,13 +120,7 @@ size_flags_vertical = 3
 
 [node name="CharacterGrid" type="GridContainer" parent="PanelContainer"]
 layout_mode = 2
-
-[node name="RoundLabel" type="Label" parent="PanelContainer/CharacterGrid"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "RoundLabel"
-label_settings = SubResource("LabelSettings_u4evm")
+size_flags_vertical = 8
 
 [node name="CharacterName" type="Label" parent="PanelContainer/CharacterGrid"]
 layout_mode = 2
@@ -137,6 +130,8 @@ label_settings = SubResource("LabelSettings_u4evm")
 [node name="HpBar" type="ProgressBar" parent="PanelContainer/CharacterGrid"]
 custom_minimum_size = Vector2(0, 23)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_75v0u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ivmjc")
 value = 50.0

@@ -11,10 +11,14 @@ var combat_menu: CombatMenu
 var ordem_do_turno: Array = []
 var round: int = 0
 
-func _init(player: GameCharacter, allies: Array[GameCharacter], enemies: Array[GameCharacter], battlefield, combat_menu: CombatMenu):
+func _init(player: GameCharacter, allies: Array[GameCharacter], enemies: Array[GameCharacter], battlefield: Battlefield, combat_menu: CombatMenu):
 	self.player = player
-	self.allies = allies
+	
 	self.allies.append(player)
+	self.allies.append(allies[0])
+	self.allies.append(allies[1])
+	self.allies.append(allies[2])
+	
 	self.enemies = enemies
 	self.combat_menu = combat_menu
 	self.battlefield = battlefield
@@ -22,33 +26,54 @@ func _init(player: GameCharacter, allies: Array[GameCharacter], enemies: Array[G
 func _ready():
 	print("== Start Game ==")
 	
-	battlefield.setPlayers(allies, enemies)
+	battlefield.set_players(allies, enemies)
 	
 	combat_menu.action_selected.connect(_on_action_selected)
-	
-	new_round();
+	combat_menu.setup(player)
 
-func new_round():
-	round += 1
-	
+func _on_action_selected(action: PlayerAction):
 	var players = allies + enemies
 	players.sort_custom(func(a, b): return a.velocity > b.velocity)
 	
 	for player in players:
-		if self.player == player:
-#			Filtrar para remover o jogador atual
-			players.filter(func(a): return a != player)
-			combat_menu.setup(player)
-			return
-		
-#		pergunta ao chat a acao
+		if self.player == player and player.is_alive():
+			get_character_by_id(players, battlefield.currentEnemySelected.id).receive_damage(action.damage)
 
-func _on_action_selected(action: PlayerAction):
-	print(action.actionName)
-	print(action.damage)
+		var randomEnemy = players[randi() % players.size()].id
+		var randomDamage = player.actions[randi() % player.actions.size()].damage
+		get_character_by_id(players, randomEnemy).receive_damage(randomDamage)
+
+	battlefield.set_players(allies, enemies)
+
+	if is_end_game():
+		print("== Game Over ==")
+
+	combat_menu.setup(player)
 
 func is_end_game() -> bool:
-	return !allies.is_empty() || !enemies.is_empty()
+	var isAlliesDead = true
+	var isEnemiesDead = true
+	var isPlayerDead = true
+
+	for enemy in enemies:
+		if enemy.is_alive():
+			isEnemiesDead = false
+
+	for ally in allies:
+		if ally.is_alive():
+			isAlliesDead = false
+
+	if player.is_alive():
+		isPlayerDead = false
+
+	return isAlliesDead or isEnemiesDead or isPlayerDead
+
+
+func get_character_by_id(characters: Array[GameCharacter], id: int) -> GameCharacter:
+	for character in characters:
+		if character.id == id:
+			return character
+	return null
 
 # adi
 

@@ -14,19 +14,19 @@ func _ready():
 		PlayerAction.new("Dano 30", 30, "dano", 10, 0)
 	];
 
-	var	player = GameCharacter.new("Allan Roque", 100, 10, actions)
+	var	player = GameCharacter.new(1, "Allan Roque", 100, 10, actions)
 
 	var allies: Array[GameCharacter] = [
-		GameCharacter.new("Aliado 1", 100, 6, actions),
-		GameCharacter.new("Aliado 2", 100, 8, actions),
-		#GameCharacter.new("Aliado 3", 100, 1, actions)
+		GameCharacter.new(2, "Aliado 1", 100, 6, actions),
+		GameCharacter.new(3, "Aliado 2", 100, 8, actions),
+		GameCharacter.new(4, "Aliado 3", 100, 1, actions)
 	]
 
 	var enemies: Array[GameCharacter] = [
-		GameCharacter.new("Inimigo 1", 100, 7, actions),
-		GameCharacter.new("Inimigo 2", 100, 2, actions),
-		GameCharacter.new("Inimigo 3", 100, 6, actions),
-		GameCharacter.new("Inimigo 4", 100, 6, actions),
+		GameCharacter.new(5, "Inimigo 1", 100, 7, actions),
+		GameCharacter.new(6, "Inimigo 2", 100, 2, actions),
+		GameCharacter.new(7, "Inimigo 3", 100, 6, actions),
+		GameCharacter.new(8, "Inimigo 4", 100, 6, actions),
 	]
 	
 	var match = MatchManager.new(player, allies, enemies, battlefield, combat_menu)
